@@ -1,6 +1,6 @@
 import Location from "./Location";
 export default function SearchPage(props) {
-
+    // props.setIsLoading(true);
     return (
         <>
             <div className="row justify-content-md-center">
