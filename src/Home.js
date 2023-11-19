@@ -9,13 +9,14 @@ export default function Home(props) {
     useEffect(() => {
         console.log('entra');
         setTimeout(() => {
+            console.log('time out');
             setIsLoading(false);
         }, CONFIG.loading_timeout_ms);
     });
 
     const callServer = async () => {
         console.log("CLIK");
-        setTheproducts(mockdata);
+        setTheproducts(mockdata.products);
     }
 
     return (
