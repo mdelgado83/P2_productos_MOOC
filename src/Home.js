@@ -10,13 +10,14 @@ export default function Home(props) {
         console.log('entra');
         setTimeout(() => {
             console.log('time out');
-            setIsLoading(false);
+            callServer(); 
         }, CONFIG.loading_timeout_ms);
     });
 
     const callServer = async () => {
         console.log("CLIK");
         setTheproducts(mockdata.products);
+        setIsLoading(false);
     }
 
     return (
