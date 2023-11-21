@@ -6,16 +6,35 @@ import Lista from "./Lista";
 import Location from "./Location";
 export default function SearchPage(props) {
   const [products, setProducts] = useState(props.theproducts);
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
+  const [categoria, setCategoria] = useState();
 
   const buscar = () => {
+    debugger;
     console.log("CLIK buscar");
-    if (search != null) {
-      setProducts(props.theproducts.filter(p => p.title.toLowerCase().includes(search.toLowerCase())));
+    if (search !== "") {
+      setProducts(
+        props.theproducts.filter((p) =>
+          p.title.toLowerCase().includes(search.toLowerCase())
+        )
+      );
     } else {
       setProducts(props.theproducts);
     }
-  }
+  };
+
+  function handleChange  (e) {
+    debugger;
+    // setProducts(
+    //   props.theproducts.filter((p) =>
+    //     p.category.toLowerCase().includes(e.target.value)
+    //   )
+    // );
+    // debugger;
+    // console.log(products);
+    setCategoria(e.target.value);
+    console.log(categoria);
+  };
 
   return (
     <div>
@@ -36,13 +55,13 @@ export default function SearchPage(props) {
             <Card.Header>Buscar</Card.Header>
             <Card.Body>
               <Card.Text>
-                <Form.Control type="text" id="filtro" onChange={(e) => setSearch(e.target.value)} />
+                <Form.Control
+                  type="text"
+                  id="filtro"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
               </Card.Text>
-              <Button
-                variant="primary"
-                id="buscador"
-                onClick={() => buscar()}
-              >
+              <Button variant="primary" id="buscador" onClick={() => buscar()}>
                 Buscar
               </Button>
             </Card.Body>
@@ -53,30 +72,24 @@ export default function SearchPage(props) {
             <Card.Header>Filtrar</Card.Header>
             <Card.Body>
               <Card.Text>
-                <Form.Select aria-label="Default select example" id="selector">
+                <Form.Select
+                  aria-label="Default select example"
+                  id="selector"
+                  onChange={handleChange}
+                >
                   <option>All</option>
-                  <option value="smartphones">smartphones</option>
-                  <option value="laptops">laptops</option>
-                  <option value="fragrances">fragrances</option>
-                  <option value="skincare">skincare</option>
-                  <option value="groceries">groceries</option>
-                  <option value="home-decoration">home-decoration</option>
-                  <option value="furniture">furniture</option>
-                  <option value="tops">tops</option>
-                  <option value="womens-dresses">womens-dresses</option>
-                  <option value="womens-shoes">womens-shoes</option>
-                  <option value="mens-shirts">mens-shirts</option>
-                  <option value="mens-shoes">mens-shoes</option>
-                  <option value="mens-watches">mens-watches</option>
-                  <option value="womens-watches">womens-watches</option>
-                  <option value="womens-bags">womens-bags</option>
-                  <option value="womens-jewellery">womens-jewellery</option>
-                  <option value="sunglasses">sunglasses</option>
-                  <option value="automotive">automotive</option>
-                  <option value="lighting">lighting</option>
+                  {props.theproducts &&
+                    Array.from(
+                      new Set(props.theproducts.map((item) => item.category))
+                    ).map((categoria, index) => {
+                      return (
+                        <option key={index} value={categoria}>
+                          {categoria}
+                        </option>
+                      );
+                    })}
                 </Form.Select>
               </Card.Text>
-              <Button variant="primary">Filtrar</Button>
             </Card.Body>
           </Card>
         </div>
