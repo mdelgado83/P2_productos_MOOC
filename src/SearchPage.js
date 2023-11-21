@@ -7,7 +7,7 @@ import Location from "./Location";
 export default function SearchPage(props) {
   const [products, setProducts] = useState(props.theproducts);
   const [search, setSearch] = useState("");
-  const [categoria, setCategoria] = useState();
+  const [categoria, setCategoria] = useState("all");
 
   const buscar = () => {
     debugger;
@@ -23,17 +23,14 @@ export default function SearchPage(props) {
     }
   };
 
-  function handleChange  (e) {
-    debugger;
-    // setProducts(
-    //   props.theproducts.filter((p) =>
-    //     p.category.toLowerCase().includes(e.target.value)
-    //   )
-    // );
-    // debugger;
-    // console.log(products);
+  function handleChange(e) {
+    console.log("CLIK handleChange");
+    
+   let aaa= props.theproducts.filter((p) =>
+      p.category.toLowerCase().includes(e.target.value)
+    );
+    setProducts(aaa);
     setCategoria(e.target.value);
-    console.log(categoria);
   };
 
   return (
@@ -58,6 +55,7 @@ export default function SearchPage(props) {
                 <Form.Control
                   type="text"
                   id="filtro"
+                  value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </Card.Text>
@@ -74,7 +72,7 @@ export default function SearchPage(props) {
               <Card.Text>
                 <Form.Select
                   aria-label="Default select example"
-                  id="selector"
+                  id="selector" value={categoria}
                   onChange={handleChange}
                 >
                   <option>All</option>
