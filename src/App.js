@@ -1,14 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
-import CONFIG from "./config/config";
-import { mockdata } from "./constants/products";
-import SearchPage from "./SearchPage";
 import NotFound from "./NotFound";
 import Producto from "./Producto";
+import SearchPage from "./SearchPage";
+import CONFIG from "./config/config";
+import { mockdata } from "./constants/products";
 
 function App() {
   const [theproducts, setTheproducts] = useState(null);
@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     console.log("entra en useEffect");
     callServer();
-  });
+  },[]);
 
   const callServer = async () => {
     debugger;

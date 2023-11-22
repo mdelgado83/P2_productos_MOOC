@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Lista from "./Lista";
-import Location from "./Location";
 import Loading from "./Loading";
+import Location from "./Location";
 import CONFIG from "./config/config";
 export default function SearchPage(props) {
   const [products, setProducts] = useState(props.theproducts);
@@ -12,13 +12,21 @@ export default function SearchPage(props) {
   const [categoria, setCategoria] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    debugger;
+    console.log('useefect 2');
     setTimeout(() => {
-      if (isLoading) {
-        setProducts(props.theproducts);
-      }
+      debugger;
       setIsLoading(null);
     }, CONFIG.loading_timeout_ms);
-  });
+  },[]);
+
+  useEffect(() => {
+    debugger;
+    // console.log('useefect 3');
+    debugger;
+    setProducts(props.theproducts);
+    // console.log(products);
+  },[isLoading]);
 
   const buscar = () => {
     debugger;
