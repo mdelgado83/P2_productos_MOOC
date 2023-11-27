@@ -13,7 +13,6 @@ import { mockdata } from "./constants/products";
 function App() {
   const [theproducts, setTheproducts] = useState(null);
   const [error, setError] = useState(null);
-  const [cargado, setCargado] = useState(false);
 
   useEffect(() => {
     console.log("entra en useEffect");

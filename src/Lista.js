@@ -11,18 +11,21 @@ export default function Lista(props) {
             <div className="unproducto" key={index}>
               <div className="m-3" key={index}>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Header>{item.title}</Card.Header>
+                  
+                <img  src={item.images[0]} alt="imagen" className="imagenProducto"/>
+                  <Card.Header className="text-center" ><b>{item.title}</b></Card.Header>
                   <Card.Body>
                     {item.description}
-                    <br></br>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        navigate("/products/" + index);
-                      }}
-                    >
-                      Ver
-                    </Button>
+                    <div className="col text-center mt-3">
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          navigate("/products/" + index);
+                        }}
+                      >
+                        Ver
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </div>
